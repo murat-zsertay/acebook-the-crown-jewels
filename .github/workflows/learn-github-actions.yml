@@ -24,7 +24,7 @@ jobs:
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
 
-      - name: Use Node.js ${{ matrix.node-version }} and npm api frontned
+      - name: Use Node.js ${{ matrix.node-version }} and npm api frontend
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
@@ -36,9 +36,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: cd api
-      - run: ls
-      - run: JWT_SECRET=SUPER_SECRET npm start
+      - run: cd api && JWT_SECRET=SUPER_SECRET npm start
 #
 #      - name: Use Node.js ${{ matrix.node-version }} and setup frontend
 #        uses: actions/setup-node@v3
