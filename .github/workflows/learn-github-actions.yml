@@ -30,6 +30,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 #          cache: 'npm'
       - run: cd api && npm install
+      - run: cd api
       - run: JWT_SECRET=SUPER_SECRET npm start
 
 #      - name: Use Node.js ${{ matrix.node-version }} and setup/test frontend
