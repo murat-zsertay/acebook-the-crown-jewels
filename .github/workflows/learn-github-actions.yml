@@ -8,39 +8,43 @@ on:
     branches: [ "AP-27-Set-up-continuous-integration-on-GitHub" ]
 
 jobs:
-  build:
+  buildStepJob:
+    build:
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          node-version: [ 18.x ]
+          mongodb-version: [ '5.0' ]
+          # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+      steps:
+        - name: Git checkout
+          uses: actions/checkout@v3
+
+        - name: Start MongoDB
+          uses: supercharge/mongodb-github-action@1.8.0
+          with:
+            mongodb-version: ${{ matrix.mongodb-version }}
+
+        - name: Use Node.js ${{ matrix.node-version }} and npm api frontend
+          uses: actions/setup-node@v3
+          with:
+            node-version: ${{ matrix.node-version }}
+        #          cache: 'npm'
+        - run: cd api && npm install
+        - run: cd frontend && npm install
+  testStepJob:
+    needs: buildStepJob
+    build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 18.x ]
-        mongodb-version: [ '5.0']
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-    steps:
-      - name: Git checkout
-        uses: actions/checkout@v3
-
-      - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@1.8.0
-        with:
-          mongodb-version: ${{ matrix.mongodb-version }}
-
-      - name: Use Node.js ${{ matrix.node-version }} and npm api frontend
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-#          cache: 'npm'
-      - run: cd api && npm install
-      - run: cd frontend && npm install
-
       - name: Use Node.js ${{ matrix.node-version }} and start backend
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - run: cd api && JWT_SECRET=SUPER_SECRET npm start
-#
       - name: Use Node.js ${{ matrix.node-version }} and setup frontend
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - run: cd frontend && JWT_SECRET=SUPER_SECRET npm start
+
 
