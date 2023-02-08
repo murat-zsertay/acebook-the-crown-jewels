@@ -32,23 +32,17 @@ jobs:
       - run: cd api && npm install
       - run: cd frontend && npm install
 
-#      - name: Use Node.js ${{ matrix.node-version }} and setup/test frontend
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: ${{ matrix.node-version }}
-#          cache: 'npm',
-#          cache-dependency-path: frontend/package-lock.json
-#      - run: cd frontend && npm install
-#      - run: JWT_SECRET=SUPER_SECRET npm start
-#      - run: JWT_SECRET=SUPER_SECRET npm run start:test
+      - name: Use Node.js ${{ matrix.node-version }} and start backend
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: cd api
+      - run: JWT_SECRET=SUPER_SECRET npm start
 #
-#      - name: Use Node.js ${{ matrix.node-version }} and setup frontend
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: ${{ matrix.node-version }}
-#          cache: 'npm',
-#          cache-dependency-path: api/package-lock.json
-#      - run: cd api
-#      - run: JWT_SECRET=SUPER_SECRET npm start
-#      - run: JWT_SECRET=SUPER_SECRET npm run test
+      - name: Use Node.js ${{ matrix.node-version }} and setup frontend
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: cd frontend
+      - run: JWT_SECRET=SUPER_SECRET npm start
 
