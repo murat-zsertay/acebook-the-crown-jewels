@@ -38,10 +38,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: cd api && JWT_SECRET=SUPER_SECRET npm start
 #
-#      - name: Use Node.js ${{ matrix.node-version }} and setup frontend
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: ${{ matrix.node-version }}
-#      - run: cd frontend
-#      - run: JWT_SECRET=SUPER_SECRET npm start
+      - name: Use Node.js ${{ matrix.node-version }} and setup frontend
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: cd frontend && JWT_SECRET=SUPER_SECRET npm start
 
