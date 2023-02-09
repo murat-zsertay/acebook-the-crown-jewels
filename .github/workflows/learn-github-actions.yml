@@ -29,22 +29,27 @@ jobs:
           uses: actions/setup-node@v3
           with:
             node-version: ${{ matrix.node-version }}
-        #          cache: 'npm'
         - run: cd api && npm install
         - run: cd frontend && npm install
   testStepJob:
-    needs: buildStepJob
     build:
-    runs-on: ubuntu-latest
-      - name: Use Node.js ${{ matrix.node-version }} and start backend
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: cd api && JWT_SECRET=SUPER_SECRET npm start
-      - name: Use Node.js ${{ matrix.node-version }} and setup frontend
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: cd frontend && JWT_SECRET=SUPER_SECRET npm start
+      runs-on: ubuntu-latest
+      needs: buildStepJob
+      strategy:
+        matrix:
+          node-version: [ 18.x ]
+          mongodb-version: [ '5.0' ]
+      steps:
+        - name: Use Node.js ${{ matrix.node-version }} and start backend
+          uses: actions/setup-node@v3
+          with:
+            node-version: ${{ matrix.node-version }}
+        - run: cd api && JWT_SECRET=SUPER_SECRET npm start
+
+        - name: Use Node.js ${{ matrix.node-version }} and setup frontend
+          uses: actions/setup-node@v3
+          with:
+            node-version: ${{ matrix.node-version }}
+        - run: cd frontend && JWT_SECRET=SUPER_SECRET npm start
 
 
