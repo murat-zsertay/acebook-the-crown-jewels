@@ -5,7 +5,6 @@ on:
     branches: [ "AP-27-Set-up-continuous-integration-on-GitHub" ]
 defaults:
   run:
-    shell: bash
     working-directory: frontend
 jobs:
   buildStepJob:
