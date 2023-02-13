@@ -1,7 +1,11 @@
-import React from 'react';
+//import React from 'react';
 import './navBar.css';
+import React, { useState } from 'react';
 
-const NavBar = () => {
+
+
+const NavBar = ({currentPage}) => {
+
     return(
         <>
             <div class="topnav">
@@ -15,6 +19,7 @@ const NavBar = () => {
                     <a href="/posts">Posts</a>
                 </div>
             </div>
+            {currentPage}
         </>
     )
 }

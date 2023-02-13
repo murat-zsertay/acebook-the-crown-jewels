@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import NavBar from '../navBar/navBar';
+import HideNavbar from '../app/App';
 
 const LogInForm = ({ navigate }) => {
   const [email, setEmail] = useState("");
@@ -34,13 +36,18 @@ const LogInForm = ({ navigate }) => {
     setPassword(event.target.value)
   }
 
+  HideNavbar();
+
 
     return (
-      <form onSubmit={handleSubmit}>
-        <input placeholder='Email' id="email" type='text' value={ email } onChange={handleEmailChange} />
-        <input placeholder='Password' id="password" type='password' value={ password } onChange={handlePasswordChange} />
-        <input role='submit-button' id='submit' type="submit" value="Submit" />
-      </form>
+      <>
+        <NavBar currentPage={"/login"} />
+        <form onSubmit={handleSubmit}>
+          <input placeholder='Email' id="email" type='text' value={email} onChange={handleEmailChange} />
+          <input placeholder='Password' id="password" type='password' value={password} onChange={handlePasswordChange} />
+          <input role='submit-button' id='submit' type="submit" value="Submit" />
+        </form>
+      </>
     );
 }
 
