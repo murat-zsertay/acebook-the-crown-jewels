@@ -1,0 +1,24 @@
+#name: Node.js CI Frontend
+#
+#on:
+#  push:
+#    branches: [ "AP-27-Set-up-continuous-integration-on-GitHub" ]
+#defaults:
+#  run:
+#    working-directory: frontend
+#jobs:
+#  buildStepJob:
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        node-version: [ 18.x ]
+#        mongodb-version: [ '5.0' ]
+#        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+#    steps:
+#      - name: Git checkout
+#        uses: actions/checkout@v3
+#
+#      - name: install frontend folder packages
+#        run: npm ci
+#      - name: start frontend
+#        run: JWT_SECRET=SUPER_SECRET npm start
