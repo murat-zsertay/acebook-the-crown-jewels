@@ -1,7 +1,7 @@
 name: Node.js CI Backend
 
 on:
-  pull_request:
+  push:
 defaults:
   run:
     working-directory: api
@@ -27,6 +27,7 @@ jobs:
 #      - run: npm install pm2@latest -g #install pm2 global
       - name: Create .env file
         run: |
+          touch .env.test.local
           echo "MONGODB_URL=${{ secrets.MONGODB_URL }}" >> .env.test.local
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env.test.local
           echo "NODE_ENV=test" >> .env.test.local
