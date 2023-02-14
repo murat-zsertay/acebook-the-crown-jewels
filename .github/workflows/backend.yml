@@ -1,7 +1,7 @@
 name: Node.js CI Backend
 
 on:
-  push:
+  pull_request:
     branches: [ "AP-27-Set-up-continuous-integration-on-GitHub" ]
 defaults:
   run:
