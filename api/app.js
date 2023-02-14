@@ -32,5 +32,5 @@ app.use(errorHandler);
 
 // error handler
 app.use(catch404);
-
+console.log("Express Listening")
 module.exports = app;

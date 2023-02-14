@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install pm2@latest -g #install pm2 global
+#      - run: npm install pm2@latest -g #install pm2 global
       - name: Create .env file
         run: |
           echo "MONGODB_URL=${{ secrets.MONGODB_URL }}" >> .env.test.local
