@@ -3,6 +3,8 @@ const express = require("express");
 const path = require("path");
 const logger = require("morgan");
 
+
+// new requires with destination of image saves to uploads folder we need to create
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 
@@ -20,9 +22,9 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-//function to upload an image to the uploads folder and set the url
+//function to upload an image to the uploads folder and set the url in res
 app.post('/upload', upload.single('image'), (req, res) => {
-    console.log(req.file);
+    console.log(req.body.formData.image);
     const imageUrl = `/uploads/${req.file.filename}`;
     res.json({ 'imageUrl': imageUrl });
 });
