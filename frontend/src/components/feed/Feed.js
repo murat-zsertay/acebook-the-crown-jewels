@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CreatePostForm from '../createPostForm/createPostForm';
 import Post from '../post/Post'
+import UploadPhotoForm from '../imageUploader/imageUploader.js'
 
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
@@ -37,6 +38,7 @@ const Feed = ({ navigate }) => {
             <button onClick={logout}>
               Logout
             </button>
+            <UploadPhotoForm/>
             <CreatePostForm callback={(value) => {
               setIsUpdated(value); 
             }}/>
