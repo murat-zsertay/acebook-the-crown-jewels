@@ -26,7 +26,7 @@ const SignUpForm = ({ navigate }) => {
     }
 
     if (response.ok) {
-      { navigate('/login')}
+      navigate('/login')
       setError(null)
       console.log('Request Submitted')
     }
