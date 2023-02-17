@@ -26,7 +26,7 @@ const PostsController = {
             res.status(200).json({post, token});
         });
     },
-    Create: (req, res) => {
+    CreateLike: (req, res) => {
         const post = new Post(req.body);
         post.save(async (err) => {
             if (err) {
@@ -40,6 +40,22 @@ const PostsController = {
     CreateComment: (req, res) => {
         // TODO: CreateComment needs to have tests added
         let {params: {post_id}, body: {user_id,content}} = req
+        // user_id and content are the properties of a comment object and must always be sent.
+        Post.findById({_id: post_id}, async (err, post) => {
+            if (err) {
+                throw err;
+            }
+            // This pushes the new comment object into the comments array in the post object
+            post.comments.push({content,user_id})
+            // saves the change to the comments property in post object
+            await post.save()
+            const token = await TokenGenerator.jsonwebtoken(user_id)
+            res.status(201).json({message: 'OK', token});
+        });
+    },
+    AddLike: (req, res) => {
+        // TODO: CreateComment needs to have tests added
+        let {params: {post_id}, body: {user_id}} = req
         // user_id and content are the properties of a comment object and must always be sent.
         Post.findById({_id: post_id}, async (err, post) => {
             if (err) {
