@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './Post.css'
 
 const Post = ({post}) => {
   const [user, setUser] = useState('Anonymous')
@@ -22,13 +23,16 @@ const Post = ({post}) => {
   return(
     <div className='post-div'>
       <h5>{user}</h5>
-      <article data-cy="post" key={ post._id }>
+      <article className='post-message-style' data-cy="post" key={ post._id }>
+
         { post.message }
       </article>
 
+    <div className='comment-style-div'>
       <a href={`/posts/${post._id}`}>
-        <p data-cy='comments-link'>Comments: {post.comments.length}</p>
+        <p className='comments-style' data-cy='comments-link'>💬 Comments: {post.comments.length}</p>
       </a>
+      </div>
     </div>
   )
 }

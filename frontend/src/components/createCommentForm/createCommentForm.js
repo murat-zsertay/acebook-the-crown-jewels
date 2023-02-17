@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './createComment.css'
 
 const CreateCommentForm = ({callback}) => {
     const [textArea, setTextArea] = useState("");
@@ -33,10 +34,10 @@ const CreateCommentForm = ({callback}) => {
     }
 
     return (
-        <div>
+        <div className='comment-container-div'>
             <form className='create-post-form'>
-                <input type='text' value= {textArea} onChange= {handleTextAreaChange}></input>
-                <button type='submit' onClick={handleSubmit}>Create comment</button>
+                <input placeholder="   What are you thinking?"  type='text' value= {textArea} onChange= {handleTextAreaChange}></input>
+                <button className="comment-btn" type='submit' onClick={handleSubmit}>Create comment</button>
             </form>
         </div>
     )

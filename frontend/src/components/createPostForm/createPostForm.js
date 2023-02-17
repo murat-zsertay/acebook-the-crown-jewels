@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-// import {useForm} from "react-hook-form";
-// import app from "../app/App";
+
+import React, { useState } from 'react';
+import './createPostForm.css';
 
 const CreatePostForm = ({callback}) => {
     // const {register,handleSubmit:handleFormSubmitReactHookForm} = useForm()
@@ -50,11 +50,12 @@ const CreatePostForm = ({callback}) => {
     }
 
     return (
-        <div>
+
+        <div className='container'>
             <form className='create-post-form' onSubmit={handleSubmit}>
-                <input type='text' value={textArea} onChange={handleTextAreaChange}></input>
-                <input type="file" name="picture"  onChange={handlePhotoFileChange}/>
-                <button type='submit' >Create post</button>
+                <input placeholder="   What's on your mind?" type='text' value= {textArea} onChange= {handleTextAreaChange}></input>
+                <button className="post-btn" type='submit' >Create post</button>
+
             </form>
             {/*<form className='create-post-form' >*/}
             {/*    <input  type="file"  name="picture" />*/}
