@@ -1,0 +1,54 @@
+.comment-container-div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;   
+}
+
+.create-post-form {
+    overflow: hidden;
+    transition: height 0.2s ease;
+    display: flex;
+    flex-direction: row;
+}
+.create-post-form input {
+    width: 50vw;
+    background: #fff;
+    border-radius: 10px;
+    flex-grow: 1;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.comment-btn {
+    align-items: center;
+    appearance: button;
+    background-color: #0d67b5;
+    border-radius: 8px;
+    border-style: none;
+    box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    font-family: "RM Neue",sans-serif;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 10px;
+    padding: 10px 21px;
+    text-align: center;
+    text-transform: none;
+    transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.comment-btn:active {
+    background-color: #2e6fbd;
+}
+
+.comment-btn:hover {
+    background-color: #1C84FF;
+}

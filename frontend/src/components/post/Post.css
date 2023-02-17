@@ -1,0 +1,32 @@
+.post-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px #fff solid;
+    background-color: #ffffff51;
+    width: 70vw;
+    margin-bottom: 10px;
+    color:  #0d0e0e;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.109);
+}
+
+.post-title{
+    font-size: 4vw;
+}
+
+.post-message-style{
+    font-size: 3vw;
+}
+
+.comments-style{
+    color: #111212;
+    font-size: 2vw;   
+}
+
+.comment-style-div{
+    margin-right: auto; 
+margin-left: 10px;
+}
+
