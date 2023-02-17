@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './createPostForm.css';
 const CreatePostForm = ({callback}) => {
     const [textArea, setTextArea] = useState("");
 
@@ -32,10 +32,10 @@ const CreatePostForm = ({callback}) => {
     }
 
     return (
-        <div>
+        <div className='container'>
             <form className='create-post-form'>
-                <input type='text' value= {textArea} onChange= {handleTextAreaChange}></input>
-                <button type='submit' onClick={handleSubmit}>Create post</button>
+                <input placeholder="   What's on your mind?" type='text' value= {textArea} onChange= {handleTextAreaChange}></input>
+                <button className="post-btn" type='submit' onClick={handleSubmit}>Create post</button>
             </form>
         </div>
     )

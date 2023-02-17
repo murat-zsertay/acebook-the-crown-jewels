@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CreatePostForm from '../createPostForm/createPostForm';
 import Post from '../post/Post'
+import './Feed.css'
 
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
@@ -33,10 +34,11 @@ const Feed = ({ navigate }) => {
     if(token) {
       return(
         <>
-          <h2>Posts</h2>
-            <button onClick={logout}>
+        {/* <button onClick={logout}>
               Logout
-            </button>
+            </button> */}
+            <div className='post-title-div'>
+          {/* <h2 className='post-title'>Posts</h2> */}
             <CreatePostForm callback={(value) => {
               setIsUpdated(value); 
             }}/>
@@ -44,6 +46,7 @@ const Feed = ({ navigate }) => {
               {posts.map(
                 (post) => ( <Post post={ post } key={ post._id } /> )
               )}
+          </div>
           </div>
         </>
       )

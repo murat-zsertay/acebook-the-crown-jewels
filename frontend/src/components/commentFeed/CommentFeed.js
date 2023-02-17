@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CreateCommentForm from '../createCommentForm/createCommentForm';
 import Comment from '../comment/Comment'
+import './CommentFeed.css'
 
 const CommentFeed = ({ navigate }) => {
     const [post, setPost] = useState([]);
@@ -36,12 +37,19 @@ const CommentFeed = ({ navigate }) => {
     if(token) {
         return(
             <>
-                <h2>{post}</h2>
-                <CreateCommentForm callback={(value) => setIsUpdated(value)}/>
+            {/* <button onClick={logout}>Logout</button> */}
+            <div className='comment-div-style'>
+               <div className='comment-style'>
+                <h2 className='post-commentPage-style'>{post}</h2>
+                <h4 className='h4-style'>Comments:</h4>
                 <div id='feed' role="feed">
                     {comments.map((comment) => ( <Comment comment={ comment } key={ comment._id } /> ))}
                 </div>
-                <button onClick={logout}>Logout</button>
+                </div>
+                <div className='comment-style'>
+                <CreateCommentForm callback={(value) => setIsUpdated(value)}/>
+                </div>
+                </div>
             </>
         )
     } else {

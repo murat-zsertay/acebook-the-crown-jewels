@@ -1,0 +1,33 @@
+
+
+.post-commentPage-style{
+    font-size: 4vw;
+}
+
+.comment-style{
+    display: flex;
+    align-items:flex-start;
+    justify-content:left;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px #fff solid;
+    background-color: #ffffff51;
+    width: 70vw;
+    color:  #0d0e0e;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.109);
+    padding:2vw;
+    margin: 1vw;
+}
+
+
+.h4-style{
+    margin-bottom: 10px;
+}
+
+.comment-div-style{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 3vw;
+}
