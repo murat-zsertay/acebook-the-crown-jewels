@@ -18,6 +18,7 @@ const PostsController = {
                 throw err;
             }
             const token = await TokenGenerator.jsonwebtoken(req.user_id)
+            res.setHeader('Vary', 'Accept');
             res.status(200).json({posts: posts, token: token});
         });
     },
