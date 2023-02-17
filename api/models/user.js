@@ -13,7 +13,7 @@ const UserSchema = new mongoose.Schema({
     validate: [validateEmail, "please use a valid email address"],
   },
   password: { type: String, required: [true, 'required'], minlength: [4, 'must be at least 4 characters long'], maxlength: 10 },
-});
+},{timestamps:true});
 
 const User = mongoose.model("User", UserSchema);
 

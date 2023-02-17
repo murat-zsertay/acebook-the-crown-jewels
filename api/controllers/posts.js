@@ -45,9 +45,9 @@ const PostsController = {
                 // TODO: Create error handler needs to be tested
                 throw err;
             }
-            console.log(req.body)
+           console.log(req.files)
             const token = await TokenGenerator.jsonwebtoken(req.user_id)
-            res.status(201).json({message: 'OK', token});
+            res.status(201).json({message: 'OK', token,post_id:post._id});
         });
     },
     CreateComment: (req, res) => {
@@ -78,7 +78,22 @@ const PostsController = {
 
             next();
         });
-    }
+    },  AddLike: (req, res) => {
+        // TODO: CreateComment needs to have tests added
+        let {params: {post_id}, body: {user_id}} = req
+        // user_id and content are the properties of a comment object and must always be sent.
+        Post.findById({_id: post_id}, async (err, post) => {
+            if (err) {
+                throw err;
+            }
+            // This pushes the new comment object into the comments array in the post object
+            post.likes.push(user_id)
+            // saves the change to the comments property in post object
+            await post.save()
+            const token = await TokenGenerator.jsonwebtoken(user_id)
+            res.status(201).json({message: 'OK', token});
+        });
+    },
 };
 
 module.exports = PostsController;

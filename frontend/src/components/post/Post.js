@@ -33,6 +33,7 @@ const Post = ({post}) => {
         <p className='comments-style' data-cy='comments-link'>💬 Comments: {post.comments.length}</p>
       </a>
       </div>
+        <p className='likes-style' data-cy='likes-link'>Likes: {post.likes.length}</p>
     </div>
   )
 }
