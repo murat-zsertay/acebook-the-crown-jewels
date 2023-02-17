@@ -14,6 +14,7 @@ const UsersController = {
       } else {
         res.status(201).json({
           message: "Thanks! your account has been successfully created",
+          user_id:req.user_id
         });
       }
     });

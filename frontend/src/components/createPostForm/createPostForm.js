@@ -1,43 +1,68 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+// import {useForm} from "react-hook-form";
+// import app from "../app/App";
 
 const CreatePostForm = ({callback}) => {
+    // const {register,handleSubmit:handleFormSubmitReactHookForm} = useForm()
     const [textArea, setTextArea] = useState("");
-
+    const [photoFile, setPhotoFile] = useState("");
     const handleTextAreaChange = (event) => {
         setTextArea(event.target.value);
     }
+    const handlePhotoFileChange = (event) => {
+        console.log(event.target.files[0])
+        setPhotoFile(event.target.files[0]);
+
+    }
 
     const handleSubmit = async (event) => {
+        // a try catch block for this function would allow for better Error
+        // for this function I have refactored out the separate request and send the whole post in formData
         event.preventDefault();
-        if (textArea !== '') {
-            let response = await fetch('/posts', {
-                method: 'post',
-                headers: {
-                    'Authorization': "Bearer " + window.localStorage.getItem('token'),
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ user_id: window.localStorage.getItem('user_id'), message: textArea})
-            })
+        // console.log(photoFile)
+        // array_buffer []
 
-            const data = await response.json()
+        let token = window.localStorage.getItem('token')
+        const formData = new FormData();
+        formData.append('user_id', window.localStorage.getItem('user_id'));
 
-            if(response.status !== 201) {
-                console.log(data.error)
-            } else {
-                console.log("post created");
-                setTextArea('');
-                callback(true);
-            }
+        if (photoFile) formData.append('photoFile', photoFile);
+
+        if (textArea) formData.append('message', textArea);
+
+        const response = await fetch('/posts', {
+            method: 'post',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            body: formData,
+        });
+        const data = await response.json();
+        if (response.status !== 201) {
+            console.log(data.error);
+        } else {
+            console.log('post created');
+            setTextArea('');
+            setPhotoFile(null);
+            callback(true);
         }
+
     }
 
     return (
         <div>
-            <form className='create-post-form'>
-                <input type='text' value= {textArea} onChange= {handleTextAreaChange}></input>
-                <button type='submit' onClick={handleSubmit}>Create post</button>
+            <form className='create-post-form' onSubmit={handleSubmit}>
+                <input type='text' value={textArea} onChange={handleTextAreaChange}></input>
+                <input type="file" name="picture"  onChange={handlePhotoFileChange}/>
+                <button type='submit' >Create post</button>
             </form>
+            {/*<form className='create-post-form' >*/}
+            {/*    <input  type="file"  name="picture" />*/}
+            {/*    <button type='submit'>Upload Photo</button>*/}
+            {/*</form>*/}
         </div>
+
+
     )
 }
 

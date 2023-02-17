@@ -16,8 +16,9 @@ const SessionsController = {
         console.log("auth error: passwords do not match")
         res.status(401).json({ message: "auth error" });
       } else {
+        console.log(req.user_id)
         const token = await TokenGenerator.jsonwebtoken(user.id)
-        res.status(201).json({ token: token, message: "OK" });
+        res.status(201).json({ token: token, message: "OK", user_id:user.id });
       }
     });
   }
