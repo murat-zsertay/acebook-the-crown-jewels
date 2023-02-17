@@ -4,7 +4,7 @@ const {CommentSchema} = require("./comment");
 
 const PostSchema = new mongoose.Schema({
   user_id: String,
-  message: String,
+  message: { type: String, required: [true, 'required'] },
   comments: [{type: CommentSchema}]
 }, { timestamps: true });
 
