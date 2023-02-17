@@ -14,7 +14,7 @@ const NavBar = () => {
             <>
                 <nav className='nav'>
                     <div className='nav-container'>
-                        <Link to="/" className='site-title'>AceBook</Link>
+                        <Link to="/" className='site-title'>Acebook</Link>
                         <ul>
                             <CustomLink to="/posts">Posts</CustomLink>,
                             <Link to="/login" onClick={() => window.localStorage.removeItem("token")}>Logout</Link>  
@@ -28,7 +28,7 @@ const NavBar = () => {
             <>
                 <nav className='nav'>
                     <div className='nav-container'>
-                        <Link to="/" className='site-title'>AceBook</Link>
+                        <Link to="/" className='site-title'>Acebook</Link>
                         <ul>
                             <CustomLink to="/login">Login</CustomLink>,
                             <CustomLink to="/signup">Sign-up</CustomLink>   

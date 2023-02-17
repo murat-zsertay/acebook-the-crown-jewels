@@ -6,15 +6,17 @@ const UsersController = {
     if (existingUser) {
       return res.status(400).json({ message: "Email already in use" });
     }
-
+console.log(req.body)
     const newUser = new User(req.body);
+    const {_id} = newUser
+
     newUser.save((err) => {
       if (err) {
         res.status(400).json({ message: err.message });
       } else {
         res.status(201).json({
           message: "Thanks! your account has been successfully created",
-          user_id:req.user_id
+          user_id:_id
         });
       }
     });
