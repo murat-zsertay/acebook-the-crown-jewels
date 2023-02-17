@@ -29,15 +29,9 @@ const CommentFeed = ({ navigate }) => {
         }
     }, [token, comments, isUpdated]);
 
-    const logout = () => {
-      window.localStorage.removeItem("token")
-      navigate('/login')
-    }
-
     if(token) {
         return(
             <>
-            {/* <button onClick={logout}>Logout</button> */}
             <div className='comment-div-style'>
                <div className='comment-style'>
                 <h2 className='post-commentPage-style'>{post}</h2>

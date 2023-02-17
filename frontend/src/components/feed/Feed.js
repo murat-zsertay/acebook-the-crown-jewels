@@ -24,19 +24,10 @@ const Feed = ({ navigate }) => {
         })
     }
   }, [token, posts, isUpdated]);
-    
-
-  const logout = () => {
-    window.localStorage.removeItem("token")
-    navigate('/login')
-  }
   
     if(token) {
       return(
         <>
-        {/* <button onClick={logout}>
-              Logout
-            </button> */}
             <div className='post-title-div'>
           {/* <h2 className='post-title'>Posts</h2> */}
             <CreatePostForm callback={(value) => {
