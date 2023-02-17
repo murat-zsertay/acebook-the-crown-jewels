@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 const Post = ({post}) => {
-  const [email, setUser] = useState('No email')
+  const [user, setUser] = useState('Anonymous')
   useEffect(() => {
+    console.log(post.user_id)
     fetch(`/users/getPoster/${post.user_id}`, {
       // headers: {
       //   'user_id': `${post.user_id}`
@@ -11,13 +12,16 @@ const Post = ({post}) => {
       .then(response => response.json())
       .then(async data => {
         console.log(data)
-        setUser(data.user.email)
+        let email = data.user.email
+        let name = email.split('@')[0]
+
+        setUser(name)
       })
   }, []);
   // console.log(post)
   return(
     <div className='post-div'>
-      <h5>{email}</h5>
+      <h5>{user}</h5>
       <article data-cy="post" key={ post._id }>
         { post.message }
       </article>
