@@ -1,5 +1,14 @@
 const Post = require("../models/post");
 const TokenGenerator = require("../models/token_generator");
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: 'uploads/',
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
 
 const PostsController = {
     Index: (req, res) => {
@@ -27,12 +36,16 @@ const PostsController = {
         });
     },
     Create: (req, res) => {
-        const post = new Post(req.body);
+        // absoluteUrl is needed proc.pwd()
+        // have a url on the post model which the browser can refer t.
+        const post = new Post(req.fields);
         post.save(async (err) => {
+            // const form = formidable({ multiples: true });
             if (err) {
                 // TODO: Create error handler needs to be tested
                 throw err;
             }
+            console.log(req.body)
             const token = await TokenGenerator.jsonwebtoken(req.user_id)
             res.status(201).json({message: 'OK', token});
         });
@@ -53,6 +66,19 @@ const PostsController = {
             res.status(201).json({message: 'OK', token});
         });
     },
+    FormHandler: async (req, res, next) => {
+        upload.single('photoFile')(req, res, err => {
+            if (err) {
+                next(err);
+                return;
+            }
+
+            req.fields = req.body;
+            req.photoFile = req.file;
+
+            next();
+        });
+    }
 };
 
 module.exports = PostsController;

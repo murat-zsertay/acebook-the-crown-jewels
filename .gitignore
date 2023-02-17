@@ -70,3 +70,4 @@ frontend/cypress/videos
 
 # Idea modules
 .idea
+/api/uploads/

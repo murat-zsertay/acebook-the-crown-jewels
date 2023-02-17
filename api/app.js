@@ -16,6 +16,8 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
+
+
 // middleware function to check for valid tokens
 
 // route setup
